@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.List;
-
 public class Veterinaria {
     private String nombre;
     private String direccion;
@@ -32,23 +30,34 @@ public class Veterinaria {
             System.out.println(gato.toString());
         }
     }
-    public void agregarPaciente(Perro perro){
+    public boolean agregarPaciente(Perro perro){
         if (this.perro == null){
             this.perro = perro;
             System.out.println("Se ha agregado un paciente perruno a la veterinaria");
+            return true;
         }
         else {
             System.out.println("Se exceden cupos perrunos");
         }
-
+        return false;
     }
-    public void agregarPaciente(Gato gato){
+
+    public boolean agregarPaciente(Gato gato){
         if (this.gato == null){
             this.gato = gato;
             System.out.println("Se ha agregado un paciente gatuno a la veterinaria");
+            return true;
         }
         else {
             System.out.println("Se exceden cupos gatunos");
         }
+        return false;
+    }
+
+    public Gato getGato() {
+        return gato;
+    }
+    public Perro getPerro(){
+        return perro;
     }
 }

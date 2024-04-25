@@ -45,5 +45,16 @@ public class Gato {
             System.out.println("No ronronea");
         }
     }
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre +
+                ", Edad: " + edad +
+                ", Raza: " + raza +
+                ", Género: " + genero +
+                ", Maulla: " + maulla +
+                ", Ronronea: " + ronronea +
+                ", Mira con desprecio: " + mira_Con_Desprecio+
+                ", Le gusta bañarse: " + bañar;
+    }
 
 }

@@ -42,4 +42,14 @@ public class Perro {
             System.out.println("El perro no pasea");
         }
     }
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre +
+                ", Edad: " + edad +
+                ", Raza: " + raza +
+                ", Género: " + genero +
+                ", Ladra: " + ladrar +
+                ", Juega: " + jugar +
+                ", Le gusta salir a pasear: " + pasear;
+    }
 }
