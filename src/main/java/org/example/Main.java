@@ -14,34 +14,33 @@ public class Main {
                 System.out.println("1. Agregar paciente perro");
                 System.out.println("2. Agregar paciente gato");
                 System.out.println("3. Mostrar pacientes");
-                System.out.println("4. Salir");
+                System.out.println("4. Dar de alta a un paciente");
+                System.out.println("5. Salir");
                 System.out.print("Ingrese una opción: ");
                 int opcion = scanner.nextInt();
 
                 switch (opcion) {
                     case 1:
-                        if (veterinaria.getPerro() != null) {
+                        if (!veterinaria.getPerros().isEmpty()) {
                             System.out.println("Ya existe un paciente perro registrado.");
                             break;
                         }
                         System.out.print("Ingrese el nombre del perro: ");
                         scanner.nextLine();
                         String nombrePerro = scanner.nextLine();
-                        System.out.print("Ingrese la edad del perro: ");
+                        System.out.print("Ingrese la edad en años del perro: ");
                         int edadPerro = scanner.nextInt();
                         System.out.print("Ingrese la raza del perro: ");
                         scanner.nextLine();
                         String razaPerro = scanner.nextLine();
                         System.out.print("Ingrese el género del perro (M/H): ");
                         String generoPerro = leerRespuestaMH(scanner);
-                        System.out.print("¿El perro ladra? (S/N): ");
-                        boolean ladraPerro = leerRespuestaSN(scanner);
                         System.out.print("¿El perro juega? (S/N): ");
                         boolean juegaPerro = leerRespuestaSN(scanner);
                         System.out.print("¿Al perro le gusta salir a pasear? (S/N): ");
                         boolean pasearPerro = leerRespuestaSN(scanner);
 
-                        Perro perro = new Perro(nombrePerro, edadPerro, razaPerro, generoPerro, ladraPerro, juegaPerro, pasearPerro);
+                        Perro perro = new Perro(nombrePerro, edadPerro, razaPerro, generoPerro, juegaPerro, pasearPerro);
                         if (veterinaria.agregarPaciente(perro)) {
                             System.out.println("Paciente agregado correctamente.");
                         } else {
@@ -49,30 +48,24 @@ public class Main {
                         }
                         break;
                     case 2:
-                        if (veterinaria.getGato() != null) {
+                        if (!veterinaria.getGatos().isEmpty()) {
                             System.out.println("Ya existe un paciente gato registrado.");
                             break;
                         }
                         System.out.print("Ingrese el nombre del gato: ");
                         scanner.nextLine();
                         String nombreGato = scanner.nextLine();
-                        System.out.print("Ingrese la edad del gato: ");
+                        System.out.print("Ingrese la edad en años del gato: ");
                         int edadGato = scanner.nextInt();
                         System.out.print("Ingrese la raza del gato: ");
                         scanner.nextLine();
                         String razaGato = scanner.nextLine();
                         System.out.print("Ingrese el género del gato (M/H): ");
                         String generoGato = leerRespuestaMH(scanner);
-                        System.out.print("¿El gato maulla? (S/N): ");
-                        boolean maullaGato = leerRespuestaSN(scanner);
-                        System.out.print("¿El gato mira con desprecio? (S/N): ");
-                        boolean miraConDesprecioGato = leerRespuestaSN(scanner);
-                        System.out.print("¿El gato ronronea? (S/N): ");
-                        boolean ronroneaGato = leerRespuestaSN(scanner);
                         System.out.print("¿Al gato le tiene miedo al agua? (S/N): ");
                         boolean bañarGato = leerRespuestaSN(scanner);
 
-                        Gato gato = new Gato(nombreGato, edadGato, razaGato, generoGato, maullaGato, miraConDesprecioGato, ronroneaGato, bañarGato);
+                        Gato gato = new Gato(nombreGato, edadGato, razaGato, generoGato, bañarGato);
                         if (veterinaria.agregarPaciente(gato)) {
                             System.out.println("Paciente agregado correctamente.");
                         } else {
@@ -83,6 +76,17 @@ public class Main {
                         veterinaria.mostrarPacientes();
                         break;
                     case 4:
+                        System.out.print("Ingrese el nombre del paciente a dar de alta (perro o gato): ");
+                        scanner.nextLine();
+                        String nombrePaciente = scanner.nextLine();
+
+                        if (veterinaria.darDeAlta(nombrePaciente)) {
+                            System.out.println("Paciente dado de alta correctamente.");
+                        } else {
+                            System.out.println("No se encontró un paciente con ese nombre.");
+                        }
+                        break;
+                    case 5:
                         salir = true;
                         break;
                     default:

@@ -1,63 +1,74 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Veterinaria {
     private String nombre;
     private String direccion;
     private String numtel;
-    private Perro perro;
-    private Gato gato;
-
-
+    private List<Perro> perros;
+    private List<Gato> gatos;
     public Veterinaria(String nombre, String direccion, String numtel){
         this.nombre = nombre;
         this.direccion = direccion;
         this.numtel = numtel;
+        this.perros = new ArrayList<>();
+        this.gatos = new ArrayList<>();
     }
-
-    public void setPerro(Perro perro) {
-        this.perro = perro;
-    }
-
-    public void setGato(Gato gato) {
-        this.gato = gato;
-    }
-    public void mostrarPacientes(){
+    public void mostrarPacientes() {
         System.out.println("Pacientes actuales:");
-        if (perro != null){
+        for (Perro perro : perros) {
             System.out.println(perro.toString());
         }
-        if (gato !=null){
+        for (Gato gato : gatos) {
             System.out.println(gato.toString());
         }
     }
-    public boolean agregarPaciente(Perro perro){
-        if (this.perro == null){
-            this.perro = perro;
+    public boolean darDeAlta(String nombre) {
+        for (Perro perro : perros) {
+            if (perro.getNombre().equals(nombre)) {
+                perros.remove(perro);
+                return true;
+            }
+        }
+
+        for (Gato gato : gatos) {
+            if (gato.getNombre().equals(nombre)) {
+                gatos.remove(gato);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public boolean agregarPaciente(Perro perro) {
+        if (this.perros.size() < 1) {
+            this.perros.add(perro);
             System.out.println("Se ha agregado un paciente perruno a la veterinaria");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Se exceden cupos perrunos");
         }
         return false;
     }
 
-    public boolean agregarPaciente(Gato gato){
-        if (this.gato == null){
-            this.gato = gato;
+    public boolean agregarPaciente(Gato gato) {
+        if (this.gatos.size() < 1) {
+            this.gatos.add(gato);
             System.out.println("Se ha agregado un paciente gatuno a la veterinaria");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Se exceden cupos gatunos");
         }
         return false;
     }
 
-    public Gato getGato() {
-        return gato;
+    public List<Perro> getPerros() {
+        return perros;
     }
-    public Perro getPerro(){
-        return perro;
+
+    public List<Gato> getGatos() {
+        return gatos;
     }
 }
